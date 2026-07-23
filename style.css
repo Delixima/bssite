@@ -1,0 +1,485 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root{
+  --washi: #EAE2CD;
+  --washi-deep: #DED3B4;
+  --sumi: #221F1B;
+  --indigo: #1E2B38;
+  --vermillion: #9A2B24;
+  --vermillion-dim: #7C231D;
+  --gold: #A9803D;
+  --ink-faint: rgba(34,31,27,0.55);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html,body{
+  background:var(--washi);
+  color:var(--sumi);
+  font-family:'EB Garamond', serif;
+}
+
+body{
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(169,128,61,0.08), transparent 45%),
+    radial-gradient(ellipse at 85% 30%, rgba(154,43,36,0.05), transparent 50%),
+    repeating-linear-gradient(0deg, rgba(34,31,27,0.015) 0px, rgba(34,31,27,0.015) 1px, transparent 1px, transparent 3px);
+  min-height:100vh;
+}
+
+a{ color:inherit; text-decoration:none; }
+
+.frame{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 32px;
+  position:relative;
+}
+
+.decree{
+  margin:28px auto;
+  max-width:1160px;
+  border:1px solid var(--sumi);
+  outline:1px solid var(--sumi);
+  outline-offset:6px;
+  position:relative;
+}
+
+.decree::before, .decree::after,
+.corner-bl, .corner-br{
+  content:'';
+  position:absolute;
+  width:22px; height:22px;
+  border:2px solid var(--vermillion);
+}
+.decree::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+.decree::after{ top:-1px; right:-1px; border-left:none; border-bottom:none; }
+.corner-bl{ bottom:-1px; left:-1px; border-right:none; border-top:none; }
+.corner-br{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+/* header commun */
+header{
+  padding:64px 32px 40px;
+  text-align:center;
+  position:relative;
+  border-bottom:1px solid rgba(34,31,27,0.25);
+}
+
+.breadcrumb{
+  font-family:'Noto Serif JP', serif;
+  font-size:12px;
+  letter-spacing:0.2em;
+  color:var(--ink-faint);
+  margin-bottom:18px;
+}
+.breadcrumb a{ color:var(--vermillion-dim); border-bottom:1px solid transparent; }
+.breadcrumb a:hover{ border-bottom-color:var(--vermillion-dim); }
+
+.era-tag{
+  font-family:'Noto Serif JP', serif;
+  font-size:13px;
+  letter-spacing:0.35em;
+  color:var(--ink-faint);
+  text-transform:uppercase;
+}
+.era-tag span{ color:var(--vermillion); }
+
+.kanji-title{
+  font-family:'Shippori Mincho', serif;
+  font-weight:800;
+  font-size:clamp(40px, 7vw, 76px);
+  letter-spacing:0.14em;
+  color:var(--sumi);
+  margin-top:22px;
+  line-height:1.1;
+}
+
+.kanji-sub{
+  font-family:'Noto Serif JP', serif;
+  font-size:15px;
+  letter-spacing:0.5em;
+  color:var(--indigo);
+  margin-top:14px;
+}
+
+.fr-title{
+  font-family:'EB Garamond', serif;
+  font-style:italic;
+  font-weight:500;
+  font-size:clamp(20px, 3vw, 28px);
+  color:var(--vermillion-dim);
+  margin-top:20px;
+  letter-spacing:0.03em;
+}
+
+.rule{
+  width:80px;
+  height:1px;
+  background:var(--gold);
+  margin:26px auto;
+  position:relative;
+}
+.rule::before{
+  content:'';
+  position:absolute;
+  left:50%; top:50%;
+  width:5px; height:5px;
+  background:var(--vermillion);
+  transform:translate(-50%,-50%) rotate(45deg);
+}
+
+.seal{
+  position:absolute;
+  top:44px;
+  right:56px;
+  width:96px; height:96px;
+  border:3px solid var(--vermillion);
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transform:rotate(-6deg);
+  background:rgba(154,43,36,0.03);
+}
+.seal-inner{
+  font-family:'Shippori Mincho', serif;
+  font-weight:700;
+  font-size:15px;
+  color:var(--vermillion);
+  writing-mode:vertical-rl;
+  letter-spacing:0.25em;
+  opacity:0.92;
+}
+.seal::after{
+  content:'';
+  position:absolute;
+  inset:6px;
+  border:1px solid var(--vermillion);
+  border-radius:3px;
+}
+@media (max-width: 640px){
+  .seal{ position:static; margin:24px auto 0; transform:rotate(-4deg); }
+}
+
+.side-strip{
+  position:absolute;
+  left:14px;
+  top:120px;
+  bottom:80px;
+  width:28px;
+  writing-mode:vertical-rl;
+  font-family:'Noto Serif JP', serif;
+  font-size:13px;
+  letter-spacing:0.4em;
+  color:var(--ink-faint);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-left:1px solid rgba(34,31,27,0.15);
+}
+@media (max-width: 900px){ .side-strip{ display:none; } }
+
+/* accueil : mission + registre */
+.mission{
+  padding:56px 64px 48px;
+  text-align:center;
+}
+.mission-label{
+  font-family:'Noto Serif JP', serif;
+  font-size:12px;
+  letter-spacing:0.4em;
+  color:var(--vermillion-dim);
+  text-transform:uppercase;
+}
+.mission p{
+  font-size:20px;
+  line-height:1.85;
+  color:var(--sumi);
+  max-width:680px;
+  margin:20px auto 0;
+  font-style:italic;
+}
+.mission-meta{
+  margin-top:28px;
+  font-family:'Noto Serif JP', serif;
+  font-size:12px;
+  letter-spacing:0.15em;
+  color:var(--ink-faint);
+}
+
+nav.registry{ padding:12px 48px 64px; }
+.registry-title{
+  text-align:center;
+  font-family:'Noto Serif JP', serif;
+  font-size:13px;
+  letter-spacing:0.5em;
+  color:var(--indigo);
+  text-transform:uppercase;
+  margin-bottom:36px;
+}
+.registry-title::before, .registry-title::after{
+  content:'◆';
+  color:var(--vermillion);
+  font-size:8px;
+  margin:0 14px;
+  vertical-align:middle;
+}
+
+.tablets{
+  display:flex;
+  flex-wrap:wrap;
+  background:var(--washi);
+  border-top:1px solid rgba(34,31,27,0.3);
+  border-left:1px solid rgba(34,31,27,0.3);
+}
+
+.tablet{
+  flex:1 1 240px;
+  background:var(--washi);
+  padding:30px 26px;
+  position:relative;
+  transition:background 0.25s ease;
+  cursor:pointer;
+  display:block;
+  border-right:1px solid rgba(34,31,27,0.3);
+  border-bottom:1px solid rgba(34,31,27,0.3);
+}
+.tablet:hover{ background:var(--washi-deep); }
+.tablet .num{
+  font-family:'Shippori Mincho', serif;
+  font-size:12px;
+  color:var(--vermillion);
+  letter-spacing:0.2em;
+}
+.tablet .kanji{
+  font-family:'Shippori Mincho', serif;
+  font-weight:700;
+  font-size:26px;
+  margin-top:10px;
+  color:var(--sumi);
+}
+.tablet .fr{
+  font-family:'EB Garamond', serif;
+  font-size:15px;
+  color:var(--indigo);
+  margin-top:8px;
+  letter-spacing:0.02em;
+}
+.tablet .desc{
+  font-family:'EB Garamond', serif;
+  font-size:13px;
+  color:var(--ink-faint);
+  margin-top:10px;
+  line-height:1.5;
+}
+.tablet::after{
+  content:'';
+  position:absolute;
+  bottom:0; left:0;
+  height:2px; width:0;
+  background:var(--vermillion);
+  transition:width 0.3s ease;
+}
+.tablet:hover::after{ width:100%; }
+.tablet.mentions{
+  background:var(--indigo);
+}
+.tablet.mentions .num,
+.tablet.mentions .kanji,
+.tablet.mentions .fr{ color:var(--washi); }
+.tablet.mentions .desc{ color:rgba(234,226,205,0.6); }
+.tablet.mentions:hover{ background:#16212C; }
+
+/* pages de contenu : articles */
+.content{
+  padding:8px 64px 56px;
+  max-width:760px;
+  margin:0 auto;
+}
+
+.article{
+  padding:32px 0;
+  border-bottom:1px solid rgba(34,31,27,0.15);
+}
+.article:last-child{ border-bottom:none; }
+
+.article .art-num{
+  font-family:'Noto Serif JP', serif;
+  font-size:12px;
+  letter-spacing:0.3em;
+  color:var(--vermillion-dim);
+  text-transform:uppercase;
+}
+
+.article h2{
+  font-family:'Shippori Mincho', serif;
+  font-size:24px;
+  font-weight:700;
+  color:var(--sumi);
+  margin-top:10px;
+  letter-spacing:0.02em;
+}
+
+.article p, .article li{
+  font-size:17px;
+  line-height:1.8;
+  color:var(--sumi);
+  margin-top:14px;
+}
+
+.article ul{ padding-left:22px; }
+.article li{ margin-top:8px; }
+
+.article table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:16px;
+  font-size:15px;
+}
+.article th, .article td{
+  border:1px solid rgba(34,31,27,0.25);
+  padding:10px 14px;
+  text-align:left;
+}
+.article th{
+  font-family:'Noto Serif JP', serif;
+  font-size:12px;
+  letter-spacing:0.1em;
+  background:rgba(154,43,36,0.06);
+  color:var(--vermillion-dim);
+}
+
+/* pied de page commun */
+footer{
+  border-top:1px solid rgba(34,31,27,0.25);
+  padding:28px 48px;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  justify-content:center;
+  font-family:'Noto Serif JP', serif;
+  font-size:11px;
+  letter-spacing:0.15em;
+  color:var(--ink-faint);
+}
+.footer-links a{ border-bottom:1px solid transparent; }
+.footer-links a:hover{ color:var(--vermillion-dim); border-bottom-color:var(--vermillion-dim); }
+
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid rgba(34,31,27,0.12);
+}
+
+.footer-kanji{
+  font-family:'Noto Serif JP', serif;
+  font-size:12px;
+  letter-spacing:0.3em;
+  color:var(--ink-faint);
+}
+
+.footer-stamp{
+  font-family:'Shippori Mincho', serif;
+  font-size:12px;
+  letter-spacing:0.15em;
+  color:var(--vermillion-dim);
+  border:1px solid var(--vermillion-dim);
+  padding:6px 14px;
+}
+
+.footer-legal{
+  font-family:'Noto Serif JP', serif;
+  font-size:11px;
+  letter-spacing:0.15em;
+  color:var(--ink-faint);
+  border:1px solid rgba(34,31,27,0.25);
+  padding:6px 14px;
+}
+.footer-legal:hover{ color:var(--vermillion-dim); border-color:var(--vermillion-dim); }
+
+/* widget d'authentification */
+#auth-widget{
+  position:absolute;
+  top:44px;
+  left:56px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:'Noto Serif JP', serif;
+  font-size:12px;
+  letter-spacing:0.08em;
+  color:var(--ink-faint);
+}
+@media (max-width: 640px){
+  #auth-widget{ position:static; margin:0 auto 24px; justify-content:center; }
+}
+.auth-btn{
+  font-family:'Noto Serif JP', serif;
+  font-size:11px;
+  letter-spacing:0.1em;
+  color:var(--vermillion-dim);
+  background:none;
+  border:1px solid var(--vermillion-dim);
+  padding:6px 14px;
+  cursor:pointer;
+}
+.auth-btn:hover{ background:var(--vermillion-dim); color:var(--washi); }
+.auth-status{ color:var(--indigo); }
+
+/* cartes de rapports / demandes */
+.item-card{
+  border:1px solid rgba(34,31,27,0.25);
+  padding:20px 22px;
+  margin-top:16px;
+  text-align:left;
+}
+.item-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  font-family:'Shippori Mincho', serif;
+  font-size:17px;
+  color:var(--sumi);
+}
+.item-meta{
+  font-family:'Noto Serif JP', serif;
+  font-size:12px;
+  letter-spacing:0.05em;
+  color:var(--ink-faint);
+  margin-top:6px;
+}
+.item-card p{ font-size:15px; margin-top:10px; }
+.tag{
+  font-family:'Noto Serif JP', serif;
+  font-size:10px;
+  letter-spacing:0.1em;
+  padding:4px 10px;
+  border:1px solid;
+  white-space:nowrap;
+}
+.tag-en_attente{ color:var(--gold); border-color:var(--gold); }
+.tag-valide{ color:#3F6B4A; border-color:#3F6B4A; }
+.tag-refuse{ color:var(--vermillion-dim); border-color:var(--vermillion-dim); }
+.item-actions{ margin-top:14px; display:flex; gap:10px; }
+.mini-btn{
+  font-family:'Noto Serif JP', serif;
+  font-size:11px;
+  letter-spacing:0.1em;
+  padding:6px 14px;
+  cursor:pointer;
+  border:1px solid;
+  background:none;
+}
+.mini-btn.valide{ color:#3F6B4A; border-color:#3F6B4A; }
+.mini-btn.valide:hover{ background:#3F6B4A; color:var(--washi); }
+.mini-btn.refuse{ color:var(--vermillion-dim); border-color:var(--vermillion-dim); }
+.mini-btn.refuse:hover{ background:var(--vermillion-dim); color:var(--washi); }

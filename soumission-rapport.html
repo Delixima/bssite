@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soumission de rapport — 報告書提出 — Brigade Scientifique</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .form-block{ margin-top:8px; }
+  .field{ margin-bottom:20px; text-align:left; }
+  .field label{
+    display:block;
+    font-family:'Noto Serif JP', serif;
+    font-size:12px;
+    letter-spacing:0.15em;
+    color:var(--vermillion-dim);
+    margin-bottom:8px;
+  }
+  .field input, .field select, .field textarea{
+    width:100%;
+    font-family:'EB Garamond', serif;
+    font-size:16px;
+    padding:12px 14px;
+    background:var(--washi-deep);
+    border:1px solid rgba(34,31,27,0.35);
+    color:var(--sumi);
+  }
+  .field textarea{ min-height:120px; resize:vertical; }
+  .badge{
+    display:inline-block;
+    font-family:'Noto Serif JP', serif;
+    font-size:11px;
+    letter-spacing:0.15em;
+    padding:5px 12px;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    margin-top:8px;
+  }
+  .submit-btn{
+    font-family:'Shippori Mincho', serif;
+    font-size:15px;
+    letter-spacing:0.1em;
+    color:var(--washi);
+    background:var(--vermillion-dim);
+    border:none;
+    padding:14px 32px;
+    cursor:pointer;
+    transition:background 0.2s ease;
+  }
+  .submit-btn:hover{ background:var(--vermillion); }
+  .submit-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .status-note{
+    margin-top:22px;
+    font-family:'Noto Serif JP', serif;
+    font-size:13px;
+    letter-spacing:0.05em;
+    color:var(--indigo);
+    display:none;
+  }
+</style>
+</head>
+<body>
+
+  <div class="frame">
+    <div class="decree">
+      <div class="corner-bl"></div>
+      <div class="corner-br"></div>
+      <div class="side-strip">大正時代 鬼殺隊 附属機関 記録</div>
+
+      <header>
+        <div id="auth-widget"></div>
+        <div class="seal"><div class="seal-inner">科学班之印</div></div>
+        <div class="breadcrumb"><a href="accueil.html">表紙</a> · registre 十一</div>
+        <div class="era-tag">soumission <span>·</span> rapport <span>·</span> validation</div>
+        <div class="kanji-title">報告書提出</div>
+        <div class="kanji-sub">報 告 の 提 出</div>
+        <div class="fr-title">Soumission de rapport</div>
+        <div class="rule"></div>
+      </header>
+
+      <section class="content">
+        <div class="article">
+          <div class="art-num">Procédure</div>
+          <p>Tout rapport d'expérience close doit être soumis ici. Il est examiné par un Co-gérant, Gérant ou Dirigeant avant d'être archivé ou renvoyé pour correction.</p>
+          <span class="badge">connexion Discord requise</span>
+        </div>
+
+        <div class="article form-block">
+          <form id="rapport-form">
+            <div class="field">
+              <label>Titre de l'expérience</label>
+              <input type="text" name="titre" placeholder="Intitulé du rapport" required>
+            </div>
+            <div class="field">
+              <label>Classe de dangerosité étudiée</label>
+              <select name="classe" required>
+                <option value="">Sélectionner</option>
+                <option>Verte</option>
+                <option>Orange</option>
+                <option>Rose</option>
+                <option>Noire</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Résumé du rapport</label>
+              <textarea name="contenu" placeholder="Déroulé, résultats, observations"></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submit-btn">soumettre le rapport</button>
+            <div class="status-note" id="status-msg"></div>
+          </form>
+        </div>
+
+        <div class="article">
+          <div class="art-num">Mes rapports</div>
+          <div id="items-list"><p>Connecte-toi pour voir tes rapports.</p></div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-links">
+          <a href="accueil.html">表紙 accueil</a>
+          <a href="formation.html">修練 formation</a>
+          <a href="reglement.html">規則 règlement</a>
+          <a href="materiel.html">器具 matériel</a>
+          <a href="serment.html">誓約 serment</a>
+          <a href="protocole.html">手順 protocole</a>
+          <a href="dangerosite.html">危険度 dangerosité</a>
+          <a href="hierarchie.html">階級 hiérarchie</a>
+          <a href="effectif.html">効力 effectif</a>
+          <a href="archives.html">記録保管 archives</a>
+          <a href="ressources.html">資源 ressources</a>
+          <a href="soumission-rapport.html">報告書提出 soumission</a>
+          <a href="demande-experience.html">実験申請 demande</a>
+          <a href="suivi.html">監督 suivi</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script src="rapport.js"></script>
+</body>
+</html>
