@@ -143,3 +143,32 @@ create policy "avertissements_select"
 -- fonction planifiée weekly-check, la mise à jour de statut par resolve-warning
 -- (toutes deux via la clé service_role).
 
+-- 6. Table des absences
+create table public.absences (
+  id uuid primary key default gen_random_uuid(),
+  membre_id uuid references public.profiles(id),
+  membre_nom text,
+  date_debut date not null,
+  date_fin date, -- null = durée indéterminée
+  motif text,
+  statut text not null default 'en_attente' check (statut in ('en_attente','validee','refusee')),
+  created_at timestamp with time zone default now()
+);
+
+alter table public.absences enable row level security;
+
+-- un membre voit ses propres absences ; co-gérant et plus voient tout
+create policy "absences_select"
+  on public.absences for select
+  using (
+    membre_id = auth.uid()
+    or exists (
+      select 1 from public.profiles
+      where id = auth.uid() and rang in ('co_gerant','gerant','dirigeant')
+    )
+  );
+
+-- aucun insert/update direct depuis le client : passage obligatoire par
+-- submit-absence et resolve-absence (clé service_role).
+
+

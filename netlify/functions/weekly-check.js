@@ -27,8 +27,20 @@ exports.handler = async () => {
   }
 
   const results = [];
+  const today = new Date().toISOString().slice(0, 10);
 
   for (const membre of membres || []) {
+    // ignore les membres en absence validée couvrant aujourd'hui (date_fin
+    // null = durée indéterminée, donc toujours couverte une fois commencée)
+    const { data: absencesActives } = await supabaseAdmin
+      .from('absences')
+      .select('id')
+      .eq('membre_id', membre.id)
+      .eq('statut', 'validee')
+      .lte('date_debut', today)
+      .or(`date_fin.is.null,date_fin.gte.${today}`);
+    if (absencesActives && absencesActives.length > 0) continue;
+
     const [{ count: rapportsCount }, { count: demandesCount }] = await Promise.all([
       supabaseAdmin.from('rapports').select('id', { count: 'exact', head: true })
         .eq('auteur_id', membre.id).gte('created_at', sevenDaysAgo),

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soumission de rapport — 報告書提出 — Brigade Scientifique</title>
+<title>Absence — 欠席届 — Brigade Scientifique</title>
 <link rel="stylesheet" href="style.css">
 <style>
   .form-block{ margin-top:8px; }
@@ -16,7 +16,7 @@
     color:var(--vermillion-dim);
     margin-bottom:8px;
   }
-  .field input, .field select, .field textarea{
+  .field input, .field textarea{
     width:100%;
     font-family:'EB Garamond', serif;
     font-size:16px;
@@ -25,7 +25,15 @@
     border:1px solid rgba(34,31,27,0.35);
     color:var(--sumi);
   }
-  .field textarea{ min-height:120px; resize:vertical; }
+  .field textarea{ min-height:100px; resize:vertical; }
+  .checkbox-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'EB Garamond', serif;
+    font-size:15px;
+    margin-bottom:20px;
+  }
   .badge{
     display:inline-block;
     font-family:'Noto Serif JP', serif;
@@ -70,49 +78,47 @@
       <header>
         <div id="auth-widget"></div>
         <div class="seal"><div class="seal-inner">科学班之印</div></div>
-        <div class="breadcrumb"><a href="accueil.html">表紙</a> · registre 十一</div>
-        <div class="era-tag">soumission <span>·</span> rapport <span>·</span> validation</div>
-        <div class="kanji-title">報告書提出</div>
-        <div class="kanji-sub">報 告 の 提 出</div>
-        <div class="fr-title">Soumission de rapport</div>
+        <div class="breadcrumb"><a href="accueil.html">表紙</a> · registre 十四</div>
+        <div class="era-tag">absence <span>·</span> congé <span>·</span> validation</div>
+        <div class="kanji-title">欠席届</div>
+        <div class="kanji-sub">不 在 の 届 出</div>
+        <div class="fr-title">Absence</div>
         <div class="rule"></div>
       </header>
 
       <section class="content">
         <div class="article">
           <div class="art-num">Procédure</div>
-          <p>Tout rapport d'expérience close doit être soumis ici. Il est examiné par un Co-gérant, Gérant ou Dirigeant avant d'être archivé ou renvoyé pour correction.</p>
+          <p>Tout membre souhaitant s'absenter dépose une demande ici, avec une date de début et, si possible, une date de fin. Si la durée n'est pas connue, coche "durée indéterminée". Le quota hebdomadaire n'est plus vérifié pour un membre en absence validée.</p>
           <span class="badge">connexion Discord requise</span>
         </div>
 
         <div class="article form-block">
-          <form id="rapport-form">
+          <form id="absence-form">
             <div class="field">
-              <label>Titre de l'expérience</label>
-              <input type="text" name="titre" placeholder="Intitulé du rapport" required>
+              <label>Date de début</label>
+              <input type="date" name="date_debut" required>
             </div>
             <div class="field">
-              <label>Classe de dangerosité étudiée</label>
-              <select name="classe" required>
-                <option value="">Sélectionner</option>
-                <option>Verte</option>
-                <option>Orange</option>
-                <option>Rose</option>
-                <option>Noire</option>
-              </select>
+              <label>Date de fin</label>
+              <input type="date" name="date_fin" id="date_fin">
+            </div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="indetermine">
+              <label for="indetermine">Durée indéterminée</label>
             </div>
             <div class="field">
-              <label>Résumé du rapport</label>
-              <textarea name="contenu" placeholder="Déroulé, résultats, observations"></textarea>
+              <label>Motif</label>
+              <textarea name="motif" placeholder="Raison de l'absence (facultatif)"></textarea>
             </div>
-            <button type="submit" class="submit-btn" id="submit-btn">soumettre le rapport</button>
+            <button type="submit" class="submit-btn" id="submit-btn">déposer la demande d'absence</button>
             <div class="status-note" id="status-msg"></div>
           </form>
         </div>
 
         <div class="article">
-          <div class="art-num">Mes rapports</div>
-          <div id="items-list"><p>Connecte-toi pour voir tes rapports.</p></div>
+          <div class="art-num">Absences</div>
+          <div id="items-list"><p>Connecte-toi pour voir les absences.</p></div>
         </div>
       </section>
 
@@ -141,6 +147,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="config.js"></script>
   <script src="auth.js"></script>
-  <script src="rapport.js"></script>
+  <script src="absence.js"></script>
 </body>
 </html>
