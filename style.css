@@ -407,19 +407,15 @@ footer{
 
 /* widget d'authentification */
 #auth-widget{
-  position:absolute;
-  top:44px;
-  left:56px;
   display:flex;
+  flex-wrap:wrap;
   align-items:center;
   gap:12px;
   font-family:'Noto Serif JP', serif;
   font-size:12px;
   letter-spacing:0.08em;
   color:var(--ink-faint);
-}
-@media (max-width: 640px){
-  #auth-widget{ position:static; margin:0 auto 24px; justify-content:center; }
+  margin-bottom:18px;
 }
 .auth-btn{
   font-family:'Noto Serif JP', serif;

@@ -168,7 +168,17 @@ create policy "absences_select"
     )
   );
 
--- aucun insert/update direct depuis le client : passage obligatoire par
--- submit-absence et resolve-absence (clé service_role).
+-- 7. Rattrapage : crée un profil pour tout compte Discord déjà existant
+--    avant la mise en place du trigger (à relancer sans risque si besoin,
+--    elle n'écrase rien pour les profils déjà présents).
+insert into public.profiles (id, discord_id, nom, rang)
+select
+  u.id,
+  u.raw_user_meta_data->>'provider_id',
+  coalesce(u.raw_user_meta_data->>'full_name', u.raw_user_meta_data->>'name', u.email),
+  'scientifique_test'
+from auth.users u
+left join public.profiles p on p.id = u.id
+where p.id is null;
 
 
